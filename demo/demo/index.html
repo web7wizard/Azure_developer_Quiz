@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra-Dynamic Quiz App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Your original CSS is preserved, with additions for the pop-up */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(45deg, #ff007b, #ff7b00, #3dff7e, #00bfff, #a700ff); background-size: 500% 500%; animation: colorSwoosh 20s ease infinite; overflow: hidden; padding: 20px; }
+        @keyframes colorSwoosh { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .background-shapes .shape { position: absolute; display: block; list-style: none; background: rgba(255, 255, 255, 0.15); animation: float 20s infinite linear; bottom: -200px; }
+        .shape1 { width: 80px; height: 80px; left: 25%; animation-duration: 45s; animation-delay: 2s;} .shape2 { width: 30px; height: 30px; left: 10%; animation-duration: 25s; animation-delay: 5s;} .shape3 { width: 100px; height: 100px; left: 70%; animation-duration: 35s; animation-delay: 0s;} .shape4 { width: 150px; height: 150px; left: 85%; animation-duration: 28s; animation-delay: 7s;} .shape5 { width: 40px; height: 40px; left: 40%; animation-duration: 32s; animation-delay: 1s;} .shape6 { width: 120px; height: 120px; left: 5%; animation-duration: 22s; animation-delay: 10s;}
+        @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; } 100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; } }
+        .quiz-container { width: 100%; max-width: 800px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1.5px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); color: #fff; text-align: center; transform: scale(0.95); opacity: 0; animation: popIn 0.8s 0.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); max-height: 90vh; overflow-y: auto; }
+        @keyframes popIn { to { transform: scale(1); opacity: 1; } }
+        .quiz-title { font-size: 2.8em; font-weight: 700; text-shadow: 0 3px 6px rgba(0,0,0,0.3); }
+        .user-details { display: flex; flex-direction: column; gap: 15px; margin: 30px 0; }
+        input[type="text"] { width: 100%; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 10px; padding: 15px; font-family: 'Poppins', sans-serif; font-size: 16px; color: #fff; transition: all 0.3s ease; }
+        input::placeholder { color: rgba(255, 255, 255, 0.7); }
+        input:focus { outline: none; background: rgba(0, 0, 0, 0.3); box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+        .question-block { text-align: left; margin: 25px 0; opacity: 0; transform: translateY(20px); animation: slideUp 0.6s forwards; }
+        .question-block:nth-child(1) { animation-delay: 0.2s; } .question-block:nth-child(2) { animation-delay: 0.3s; } .question-block:nth-child(3) { animation-delay: 0.4s; } .question-block:nth-child(4) { animation-delay: 0.5s; } .question-block:nth-child(5) { animation-delay: 0.6s; } .question-block:nth-child(6) { animation-delay: 0.7s; } .question-block:nth-child(7) { animation-delay: 0.8s; } .question-block:nth-child(8) { animation-delay: 0.9s; } .question-block:nth-child(9) { animation-delay: 1.0s; } .question-block:nth-child(10) { animation-delay: 1.1s; }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        .question-block p { font-weight: 600; font-size: 1.2em; margin-bottom: 15px; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 10px; }
+        .option { display: block; padding: 12px 15px; margin: 10px 0; background: rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+        .option:hover { background: rgba(255, 255, 255, 0.2); transform: translateX(10px); }
+        .option input[type="radio"] { margin-right: 12px; accent-color: #ff7b00; }
+        button[type="submit"], #restart-btn { background: linear-gradient(45deg, #ff007b, #a700ff); color: #fff; border: none; padding: 15px 40px; font-size: 18px; font-weight: 700; border-radius: 50px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; margin-top: 20px; text-transform: uppercase; }
+        button[type="submit"]:hover, #restart-btn:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); background: #555; }
+        #result { margin-top: 30px; font-size: 2.5em; font-weight: 700; text-shadow: 0 3px 6px rgba(0,0,0,0.4); display: none; /* Hide original result */ }
+        #result:hover { transform: scale(1.1); }
+        .option.correct { background: rgba(40, 167, 69, 0.7); border: 2px solid #28a745; font-weight: bold; }
+        .option.incorrect { background: rgba(220, 53, 69, 0.7); border: 2px solid #dc3545; }
+        .option.correct-answer { box-shadow: 0 0 20px #00bfff; border: 2px solid #00bfff; animation: pulseCorrect 1.5s infinite ease-in-out; }
+        @keyframes pulseCorrect { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        /* --- ADDED: Styles for Pop-Up --- */
+        #results-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.5s ease-in-out; }
+        #results-overlay.visible { opacity: 1; visibility: visible; }
+        .results-modal { position: relative; background: rgba(255, 255, 255, 0.15); padding: 50px 60px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); text-align: center; transform: scale(0.8); transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s; }
+        #results-overlay.visible .results-modal { transform: scale(1); }
+        #final-score-splash { color: #fff; font-size: 3em; font-weight: 700; text-shadow: 0 4px 8px rgba(0,0,0,0.5); margin: 0; }
+        .results-modal p { font-size: 1.5em; color: #eee; margin-bottom: 20px; }
+        .confetti { width: 15px; height: 15px; background-color: #f2d74e; position: absolute; top: 50%; left: 50%; opacity: 0; }
+        #results-overlay.visible .confetti { animation: confetti-burst 1.2s ease-out forwards; }
+        @keyframes confetti-burst { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; } 100% { transform: translate(var(--x, 0), var(--y, 0)) rotate(720deg) scale(0); opacity: 0; } }
+        .confetti:nth-child(1) { background-color: #ff007b; --x: -250px; --y: -150px; animation-delay: 0s; } .confetti:nth-child(2) { background-color: #ff7b00; --x: 250px; --y: -100px; animation-delay: 0.1s; } .confetti:nth-child(3) { background-color: #3dff7e; --x: -200px; --y: 200px; animation-delay: 0.2s; } .confetti:nth-child(4) { background-color: #00bfff; --x: 230px; --y: 150px; animation-delay: 0.05s; } .confetti:nth-child(5) { background-color: #a700ff; --x: -100px; --y: -250px; animation-delay: 0.3s; } .confetti:nth-child(6) { background-color: #fffa65; --x: 100px; --y: 250px; animation-delay: 0.15s; } .confetti:nth-child(7) { background-color: #ff4d4d; --x: -300px; --y: 50px; animation-delay: 0.25s; } .confetti:nth-child(8) { background-color: #6effa8; --x: 300px; --y: -50px; animation-delay: 0.35s; } .confetti:nth-child(9) { background-color: #ff007b; --x: -150px; --y: 280px; animation-delay: 0.4s; } .confetti:nth-child(10) { background-color: #00bfff; --x: 150px; --y: -280px; animation-delay: 0.45s; }
+
+    </style>
+</head>
+<body>
+    <ul class="background-shapes">
+        <li class="shape shape1"></li> <li class="shape shape2"></li> <li class="shape shape3"></li>
+        <li class="shape shape4"></li> <li class="shape shape5"></li> <li class="shape shape6"></li>
+    </ul>
+    <div class="quiz-container">
+        <h2 class="quiz-title">Azure Developer Quiz</h2>
+        <form id="quizForm">
+            <div class="user-details">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="text" id="rollNumber" placeholder="Your Roll Number" required>
+            </div>
+            <div id="questions"></div>
+            <button type="submit">Reveal My Score</button>
+        </form>
+        <h3 id="result"></h3>
+    </div>
+
+    <!-- ADDED: The HTML for the results pop-up -->
+    <div id="results-overlay">
+        <div class="results-modal">
+            <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+            <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+            <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+            <div class="confetti"></div>
+            <p>Congratulations!</p>
+            <h2 id="final-score-splash"></h2>
+            <button id="restart-btn">Try Again</button>
+        </div>
+    </div>
+
+
+    <script>
+    const questions = [
+        { question: "What is Azure?", answer: "A", options: ["A cloud platform", "A database", "A browser", "An OS"] },
+        { question: "What does VM stand for?", answer: "C", options: ["Virtual Model", "Variable Machine", "Virtual Machine", "Verified Memory"] },
+        { question: "Which is a PaaS service?", answer: "B", options: ["Azure VM", "Azure App Service", "Azure Blob", "Azure Disk"] },
+        { question: "Which Azure service stores objects?", answer: "A", options: ["Blob Storage", "SQL DB", "App Service", "Function"] },
+        { question: "What’s used for serverless computing?", answer: "C", options: ["VM", "App Gateway", "Azure Functions", "SQL Server"] },
+        { question: "Azure CLI command starts with?", answer: "D", options: ["$az", "az:", "azure>", "az"] },
+        { question: "Which is for identity management?", answer: "B", options: ["Key Vault", "Azure AD", "App Config", "Firewall"] },
+        { question: "What does Azure Monitor do?", answer: "A", options: ["Monitor resources", "Control network", "Manage users", "Deploy apps"] },
+        { question: "Which is used for CDN?", answer: "C", options: ["Azure Queue", "Logic App", "Azure Front Door", "Azure Tables"] },
+        { question: "What is Azure DevOps?", answer: "B", options: ["Monitoring Tool", "CI/CD Platform", "Storage Service", "Gateway"] }
+    ];
+
+    const questionsDiv = document.getElementById("questions");
+    const quizForm = document.getElementById("quizForm");
+    const resultDiv = document.getElementById("result");
+    
+    // ADDED: Get the new pop-up elements
+    const resultsOverlay = document.getElementById('results-overlay');
+    const finalScoreSplash = document.getElementById('final-score-splash');
+    const restartBtn = document.getElementById('restart-btn');
+
+
+    quizForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const rollNumber = document.getElementById("rollNumber").value.trim();
+        let score = 0;
+        const userAnswers = [];
+
+        document.querySelectorAll('.background-shapes .shape').forEach(el => el.style.animation = 'none');
+
+        questions.forEach((q, i) => {
+            const questionBlock = document.getElementById(`question-${i}`);
+            const allOptions = questionBlock.querySelectorAll('.option');
+            const selectedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+            const correctAnswerValue = q.answer;
+
+            userAnswers.push(selectedRadio ? selectedRadio.value : null);
+
+            allOptions.forEach(opt => {
+                opt.querySelector('input').disabled = true;
+                opt.style.pointerEvents = 'none';
+            });
+
+            if (selectedRadio) {
+                const selectedLabel = selectedRadio.parentElement;
+                if (selectedRadio.value === correctAnswerValue) {
+                    score++;
+                    selectedLabel.classList.add('correct');
+                } else {
+                    selectedLabel.classList.add('incorrect');
+                    const correctLabel = questionBlock.querySelector(`input[value="${correctAnswerValue}"]`).parentElement;
+                    correctLabel.classList.add('correct-answer');
+                }
+            } else {
+                const correctLabel = questionBlock.querySelector(`input[value="${correctAnswerValue}"]`).parentElement;
+                correctLabel.classList.add('correct-answer');
+            }
+        });
+        
+        // CHANGED: Instead of showing the old result text, we now show the pop-up
+        finalScoreSplash.innerText = `Your final score: ${score} / 10`;
+        setTimeout(() => {
+            resultsOverlay.classList.add('visible');
+        }, 500);
+
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        
+        // This 'try/catch' block for your backend is completely preserved
+        try {
+            const res = await fetch("http://localhost:8081/api/quiz/submit", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    name: name, 
+                    rollNumber: rollNumber, 
+                    answers: userAnswers 
+                })
+            });
+
+            if (res.ok) {
+                console.log("✅ Score submitted successfully to backend.");
+            } else {
+                console.error("❌ Failed to submit score. Server responded with status:", res.status);
+                const errorText = await res.text();
+                console.error("Server Response:", errorText);
+            }
+        } catch (err) {
+            console.error("❌ Network or script error when submitting score:", err);
+        }
+    });
+
+    // FIXED: The code had two 'renderQuestions' functions. This is the single, correct one.
+    function renderQuestions() {
+        let questionHTML = "";
+        const optionChars = ['A', 'B', 'C', 'D'];
+        questions.forEach((q, index) => {
+            questionHTML += `
+                <div class="question-block" id="question-${index}">
+                    <p>${index + 1}. ${q.question}</p>
+                    <div class="options">
+                        ${q.options.map((opt, i) => `
+                            <label class="option">
+                                <input type="radio" name="q${index}" value="${optionChars[i]}">
+                                ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        questionsDiv.innerHTML = questionHTML;
+    }
+    
+    // ADDED: Listener for the new restart button
+    restartBtn.addEventListener('click', () => {
+        location.reload(); 
+    });
+
+    renderQuestions();
+    </script>
+</body>
+</html>
