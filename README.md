@@ -1,6 +1,6 @@
-# Azure_developer_Quiz
+#  ☁️ Azure_developer_Quiz
 
-This is a microproject built using **Spring Boot (Java)** as the backend and **HTML/CSS/JS** for the frontend. The application is designed to conduct a 10-questioA dynamic, full-stack web application featuring an interactive quiz on Azure fundamentals. This project uses a Spring Boot REST API to manage quiz submissions and a vibrant HTML, CSS, and JavaScript frontend to deliver an engaging user experience.
+This is a microproject built using **Spring Boot (Java)** as the backend and **HTML/CSS/JS** for the frontend. The application is designed to conduct a 10-question, a dynamic, full-stack web application featuring an interactive quiz on Azure fundamentals. This project uses a Spring Boot REST API to manage quiz submissions and a vibrant HTML, CSS, and JavaScript frontend to deliver an engaging user experience.
 n quiz based on the **Microsoft Azure AZ-900 Certification**. It captures user details (Name and Roll Number), evaluates their answers, calculates the score, and stores the result in a PostgreSQL database.
 
 # ✨ Core Features
@@ -30,13 +30,17 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 - PostgreSQL Driver
 - Maven (Build Tool)
 
-### 🌐 Frontend
+###  🌐 Frontend
 - HTML
 - CSS
 - JavaScript
 
-### 🗄️ Database
+###  🗄️ Database
 - PostgreSQL
+
+###  🎯IDE used
+- vs code
+
 
  # 📌 Project Features
 
@@ -49,9 +53,9 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 - 📡 CORS enabled to connect frontend (`http://localhost:5500`) and backend (`http://localhost:8081`)
 
 
-# idea behind it 
-
+#  ⚙️ idea behind it 
 me and my class mate we are taking az900 cirtification of microsoft so i made this so it will help for exam that was the idea behind making this
+
 
 # 🗃️ Database Table
 The PostgreSQL table quiz_result will store:
@@ -65,7 +69,7 @@ rollNumber: String
 score: Integer
 
 
-# output of frontend
+#  📸 output of frontend
  
 
 <img width="1893" height="917" alt="r1" src="https://github.com/user-attachments/assets/37229494-0445-4339-a29e-50fbc657c058" />
@@ -76,7 +80,7 @@ score: Integer
 <img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/9e75bd1a-42f1-4e1a-be0f-a9c3d34fac78" />
 
 
-# output of backend running 
+#  📸 output of backend running 
 
 <img width="1915" height="1026" alt="r5" src="https://github.com/user-attachments/assets/b5f07e66-6abe-4a49-a5c1-ad2c38cc3653" />
 
