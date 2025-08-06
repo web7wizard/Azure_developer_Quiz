@@ -19,7 +19,8 @@ Answer the 10 questions.
 Click "Reveal My Score".
 Watch the celebration! Your score will be displayed, and the results will be saved to the database.
 
-## 🔧 Technologies Used
+
+# 🔧 Technologies Used
 
 ### 💻 Backend
 - Java 17+
@@ -47,6 +48,11 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 - 📤 Displays result on frontend dynamically
 - 📡 CORS enabled to connect frontend (`http://localhost:5500`) and backend (`http://localhost:8081`)
 
+
+# idea behind it 
+
+me and my class mate we are taking az900 cirtification of microsoft so i made this so it will help for exam that was the idea behind making this
+
 # 🗃️ Database Table
 The PostgreSQL table quiz_result will store:
 
@@ -58,6 +64,7 @@ rollNumber: String
 
 score: Integer
 
+
 # output of frontend
  
 
@@ -67,6 +74,7 @@ score: Integer
 
 <img width="1910" height="917" alt="r3" src="https://github.com/user-attachments/assets/2c70deb2-2527-471f-b0cf-454175cf8e54" />
 <img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/9e75bd1a-42f1-4e1a-be0f-a9c3d34fac78" />
+
 
 # output of backend running 
 
