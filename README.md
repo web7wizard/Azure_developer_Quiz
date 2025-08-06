@@ -1,4 +1,4 @@
-<img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/cbf430e8-ab3c-4963-a3d7-1ce607602352" /><img width="1910" height="917" alt="r3" src="https://github.com/user-attachments/assets/3ef0d26c-7917-4b40-a3db-3b9a9a639ea2" /># Azure_developer_Quiz
+# Azure_developer_Quiz
 
 This is a microproject built using **Spring Boot (Java)** as the backend and **HTML/CSS/JS** for the frontend. The application is designed to conduct a 10-questioA dynamic, full-stack web application featuring an interactive quiz on Azure fundamentals. This project uses a Spring Boot REST API to manage quiz submissions and a vibrant HTML, CSS, and JavaScript frontend to deliver an engaging user experience.
 n quiz based on the **Microsoft Azure AZ-900 Certification**. It captures user details (Name and Roll Number), evaluates their answers, calculates the score, and stores the result in a PostgreSQL database.
@@ -59,21 +59,14 @@ rollNumber: String
 score: Integer
 
 # output of frontend
+ 
 
-<img width="1893" height="917" alt="r1" src="https://github.com/user-attachments/assets/3184447e-17af-4d35-b4d5-703272cbfa37" />
-<img width="1856" height="923" alt="r2" src="https://github.com/user-attachments/assets/2a2a7ab3-e1f6-4c16-bbe7-f0c19ec1b071" />
-<img width="1910" height="917" alt="r3" src="https://github.com/user-att<img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/480b0579-3b03-4ddb-9cb4-2e18f5ae17e5" />
-achm![Uploading r4.png…]()
-ents/assets/95e1ff89-a52f-4ba1-bc3a-c502927c5dc6" />
+<img width="1893" height="917" alt="r1" src="https://github.com/user-attachments/assets/37229494-0445-4339-a29e-50fbc657c058" />
+<img width="1856" height="923" alt="r2" src="https://github.com/user-attachments/assets/5bac9950-cd54-40a1-90fd-f002d0028fce" />
 
 
-
-![Uploading r4.png…]()
-
-
-
-
-
+<img width="1910" height="917" alt="r3" src="https://github.com/user-attachments/assets/2c70deb2-2527-471f-b0cf-454175cf8e54" />
+<img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/9e75bd1a-42f1-4e1a-be0f-a9c3d34fac78" />
 
 
 
