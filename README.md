@@ -68,6 +68,10 @@ score: Integer
 <img width="1910" height="917" alt="r3" src="https://github.com/user-attachments/assets/2c70deb2-2527-471f-b0cf-454175cf8e54" />
 <img width="1910" height="923" alt="r4" src="https://github.com/user-attachments/assets/9e75bd1a-42f1-4e1a-be0f-a9c3d34fac78" />
 
+# output of backend running 
+
+<img width="1915" height="1026" alt="r5" src="https://github.com/user-attachments/assets/b5f07e66-6abe-4a49-a5c1-ad2c38cc3653" />
+
 
 
 
