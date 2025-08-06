@@ -22,7 +22,7 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 
 # 🔧 Technologies Used
 
-### 💻 Backend
+## 💻 Backend
 - Java 17+
 - Spring Boot
 - Spring Web
@@ -30,15 +30,15 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 - PostgreSQL Driver
 - Maven (Build Tool)
 
-###  🌐 Frontend
+##  🌐 Frontend
 - HTML
 - CSS
 - JavaScript
 
-###  🗄️ Database
+##  🗄️ Database
 - PostgreSQL
 
-###  🎯IDE used
+##  🎯IDE used
 - vs code
 
 
@@ -54,7 +54,7 @@ Watch the celebration! Your score will be displayed, and the results will be sav
 
 
 #  ⚙️ idea behind it 
-me and my class mate we are taking az900 cirtification of microsoft so i made this so it will help for exam that was the idea behind making this
+me and my class mates, we are taking az900 cirtification of microsoft so i made this so it will help us for exam as well ,  that was the idea behind making this
 
 
 # 🗃️ Database Table
@@ -82,9 +82,11 @@ score: Integer
 
 #  📸 output of backend running 
 
+server is started :
 <img width="1915" height="1026" alt="r5" src="https://github.com/user-attachments/assets/b5f07e66-6abe-4a49-a5c1-ad2c38cc3653" />
 
 # 🤝 Contributing
+
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
              
