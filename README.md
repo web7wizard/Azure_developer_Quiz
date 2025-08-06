@@ -80,6 +80,19 @@ score: Integer
 
 <img width="1915" height="1026" alt="r5" src="https://github.com/user-attachments/assets/b5f07e66-6abe-4a49-a5c1-ad2c38cc3653" />
 
+# 🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+             
+# 👩‍💻 Author                   
+-    Name              -  javeriya jamadar
+-    college           -  sesp 
+- 📧 emil account     -  javeriyajamadar7@gmail.com
+- 🔗 GitHub Profile   -  web7wizard 
+
+#
+** Proudly developed as part of a journey in learning and building real-world Java applications. 🎓💻
+
 
 
 
